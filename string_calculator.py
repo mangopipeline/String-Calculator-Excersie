@@ -36,6 +36,7 @@ def calculate_string(string_val):
         next_op_index = None
 
         # NOTE: I attempt to find the previous and next operator to setup logic that will allow mix typing of operators
+        # NOTE: it also helps support int values with more than one digit
         if i:
             prev_op_index = operator_index[i - 1]
 
@@ -82,7 +83,7 @@ def calculate_string(string_val):
     return mult_total + add_total
 
 
-# NOTE: create some test cases for my self to make sure i'm adressing multiple permutations of the problem.
+# NOTE: create some test cases for my self to make sure i'm addressing multiple permutations of the problem.
 
 class TestCalc(unittest.TestCase):
     def test_basic(self):
@@ -110,7 +111,7 @@ class TestCalc(unittest.TestCase):
         out = calculate_string(test)
         self.assertEqual(out, 30)
 
-    def test_out_of_order(self):
+    def test_multiple_char_ints(self):
         test = '10+60*40+35+12*1'
         out = calculate_string(test)
         self.assertEqual(out, 2457)
