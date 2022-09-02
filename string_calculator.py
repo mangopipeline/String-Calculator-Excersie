@@ -26,10 +26,10 @@ def calculate_string(string_val):
         if char in char_look_up:
             operator_index.append(index)
 
-    # NOTE: setup some static bars to add up our results
+    # NOTE: setup some static vars to add up our results
     mult_total = 0
     add_total = 0
-    use_a = True  # NOTE: this helps me track when i've allredy handled the a_value for the next operation
+    use_a = True  # NOTE: this helps me track when i've allredy handled the a_value in the previous operation
 
     # NOTE: next i loop through the operators and find the neighbors values
 
