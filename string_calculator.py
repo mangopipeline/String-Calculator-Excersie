@@ -4,22 +4,54 @@ Created on Sep 1, 2022
 calculate string solutions
 Generate a method that will take an input of integers separated by multiplication or addition operators that will return correct solution for the string.
 example input: '6*4+3+1'
-basic rules 
-  string value is always solvable 
-  only multi or add 
-  order of operations matters (Mult before add)
-  
-features i added not discussed in the test
-*add support for ints with more than one digit
-*add support for out order operations mult before add add before mult
+i added to solutions
+
+
+"calculate_string" is the one i was trying to finish but ran out of itme (long answear)
+"calculate_string_v2" one is the one one i think i was actually expected to write (short answear)  
+
+both answers work, but i failed to recognize the pattern i was being guide towards during the interview
+and so my interview answer was not the best.
+
 '''
 
+
 import unittest
+
+# NOTE: this is an implementation closer to what i think Chen was hinting too (split by +)
+
+
+def calculate_string_v2(string_val):
+    """
+    this is the one i think i was meant to implement but didn't 
+
+    this implementation relies on a pattern I failed to see in the data.
+    if you split by '+' the addition data becomes isolated 
+    i wish i had seen this pattern sooner (i got caught of over thinking and the guidance provided did not sync until hours later)
+
+    :param string_val:
+    """
+    split_vals = string_val.split('+')
+    total = 0
+
+    for sub_val in split_vals:
+        mult_vals = sub_val.split('*')
+        if len(mult_vals) < 2:
+            total += int(mult_vals[0])
+            continue
+        mult_val = 1
+        for mlt in mult_vals:
+            mult_val = mult_val * int(mlt)
+
+        total += mult_val
+
+    return total
 
 
 def calculate_string(string_val):
     """
-    3 step implementation (2 loops)
+    3 step implementation (2 loops) 
+    this one the long way i got to explain my inital approuch but did not get to work out all the details of the code (i was  over thinking).
 
     step one (loop 1) get_a list of indexes for each operator
     step two (loop 2) loop through that smaller list of index and use some simple index math to find the neighbors
@@ -96,6 +128,9 @@ def calculate_string(string_val):
 # NOTE: create some test cases for my self to make sure i'm addressing multiple permutations of the problem.
 
 class TestCalc(unittest.TestCase):
+    def setUp(self):
+        self.calc = calculate_string
+
     def test_basic(self):
         test = '6*4+3+1'
         out = calculate_string(test)
@@ -103,28 +138,34 @@ class TestCalc(unittest.TestCase):
 
     def test_more_mult(self):
         test = '10*6*4+3+1'
-        out = calculate_string(test)
+        out = self.calc(test)
         self.assertEqual(out, 244)
 
     def test_more_add(self):
         test = '10*6*4+3+1+20'
-        out = calculate_string(test)
+        out = self.calc(test)
         self.assertEqual(out, 264)
 
     def test_out_of_order(self):
         test = '1+6*4+3+1'
-        out = calculate_string(test)
+        out = self.calc(test)
         self.assertEqual(out, 29)
 
     def test_out_of_order_extra_mult(self):
         test = '1+6*4+3+1*2'
-        out = calculate_string(test)
+        out = self.calc(test)
         self.assertEqual(out, 30)
 
     def test_multiple_char_ints(self):
         test = '10+60*40+35+12*1'
-        out = calculate_string(test)
+        out = self.calc(test)
         self.assertEqual(out, 2457)
+
+
+class TestCalcV2(TestCalc):
+    def setUp(self):
+        TestCalc.setUp(self)
+        self.calc = calculate_string_v2
 
 
 if __name__ == '__main__':
