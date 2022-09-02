@@ -8,7 +8,7 @@ i added to solutions
 
 
 "calculate_string" is the one i was trying to finish but ran out of itme (long answear)
-"calculate_string_v2" one is the one one i think i was actually expected to write (short answear)  
+"calculate_string_v2" one is the  one i think i was actually expected to write (short answear)  
 
 both answers work, but i failed to recognize the pattern i was being guide towards during the interview
 and so my interview answer was not the best.
