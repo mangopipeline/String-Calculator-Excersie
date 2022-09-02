@@ -18,9 +18,19 @@ import unittest
 
 
 def calculate_string(string_val):
+    """
+    3 step implementation (2 loops)
+
+    step one (loop 1) get_a list of indexes for each operator
+    step two (loop 2) loop through that smaller list of index and use some simple index math to find the neighbors
+    step three (loop 2) add or multiply the neighbor values as needed making sure to avoid values that have been processed already
+
+
+    :param str string_val: string value with integers and operator characters 
+    """
     char_look_up = {'+', '*'}  # a set containing the supported  operators
 
-    # NOTE: generate an index of character that represent mathematics operations
+    # NOTE: generate an list of indexes that marks the position of the operator characters in the string
     operator_index = [index for index, char in enumerate(string_val) if char in char_look_up]
 
     # NOTE: setup some static vars to add up our results
