@@ -1,27 +1,17 @@
 '''
 Created on Sep 1, 2022
-
 @author: carlos.anguiano
-
-
-calculate string solutoins
-
-Generate a method that will take an input of integers seperated by multiplication or addtion opeartors that will return correct solution for the string.
-
+calculate string solutions
+Generate a method that will take an input of integers separated by multiplication or addition operators that will return correct solution for the string.
 example input: '6*4+3+1'
-
 basic rules 
   string value is always solvable 
   only multi or add 
   order of operations matters (Mult before add)
   
-
-features i added not dicussed in the test
-
+features i added not discussed in the test
 *add support for ints with more than one digit
 *add support for out order operations mult before add add before mult
-
-
 '''
 
 import unittest
@@ -31,15 +21,12 @@ def calculate_string(string_val):
     char_look_up = {'+', '*'}  # a set containing the supported  operators
 
     # NOTE: generate an index of character that represent mathematics operations
-    operator_index = []
-    for index, char in enumerate(string_val):
-        if char in char_look_up:
-            operator_index.append(index)
+    operator_index = [index for index, char in enumerate(string_val) if char in char_look_up]
 
     # NOTE: setup some static vars to add up our results
     mult_total = 0
     add_total = 0
-    use_a = True  # NOTE: this helps me track when i've allredy handled the a_value in the previous operation
+    use_a = True  # NOTE: this helps me track when i've already handled the a_value for the next operation
 
     # NOTE: next i loop through the operators and find the neighbors values
 
@@ -55,12 +42,12 @@ def calculate_string(string_val):
         if i != len(operator_index) - 1:
             next_op_index = operator_index[i + 1]
 
-        # NOTE: i use this code to find out when the first value digit should beging
+        # NOTE: i use this code to find out when the first value digit should begin
         start_index = 0
         if prev_op_index is not None:
             start_index = prev_op_index
 
-        # NOTE: i collect the neightbors
+        # NOTE: i collect the neighbors
         val_a = string_val[start_index:op_index]
         val_b = string_val[op_index + 1:next_op_index]
 
@@ -80,7 +67,7 @@ def calculate_string(string_val):
 
             continue
 
-        # NOTE hanndle adding values?
+        # NOTE handle adding values?
         if val_a:
             if prev_op_index is None or string_val[prev_op_index] == '+':
                 add_total += int(val_a)
@@ -131,4 +118,3 @@ class TestCalc(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
