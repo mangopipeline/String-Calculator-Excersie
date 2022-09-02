@@ -28,7 +28,9 @@ def calculate_string_v2(string_val):
     this implementation relies on a pattern I failed to see in the data.
     if you split by '+' the addition data becomes isolated 
     i wish i had seen this pattern sooner (i got caught of over thinking and the guidance provided did not sync until hours later)
-
+    
+    after timing both functions this method was also faster... 2.8x over 10000 executions
+    
     :param string_val:
     """
     split_vals = string_val.split('+')
