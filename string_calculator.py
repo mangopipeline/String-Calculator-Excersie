@@ -6,6 +6,16 @@ Created on Sep 1, 2022
 
 calculate string solutoins
 
+Generate a method that will take an input of integers seperated by multiplication or addtion opeartors that will return correct solution for the string.
+
+example input: '6*4+3+1'
+
+basic rules 
+  string value is always solvable 
+  only multi or add 
+  order of operations matters (Mult before add)
+  
+
 features i added not dicussed in the test
 
 *add support for ints with more than one digit
