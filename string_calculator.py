@@ -18,7 +18,7 @@ and so my interview answer was not the best.
 
 import unittest
 
-# NOTE: this is an implementation closer to what i think Chen was hinting too (split by +)
+# NOTE: this is an implementation closer to what i think Cheng was hinting too (split by +)
 
 
 def calculate_string_v2(string_val):
